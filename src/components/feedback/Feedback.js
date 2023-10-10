@@ -1,6 +1,7 @@
+import { Wrapper } from './feedback.styled';
 export const Feedback = ({ leaveFeedback }) => {
   return (
-    <div>
+    <Wrapper>
       <button type="button" onClick={() => leaveFeedback('good')}>
         Good
       </button>
@@ -10,6 +11,6 @@ export const Feedback = ({ leaveFeedback }) => {
       <button type="button" onClick={() => leaveFeedback('bad')}>
         Bad
       </button>
-    </div>
+    </Wrapper>
   );
 };
