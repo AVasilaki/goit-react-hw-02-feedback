@@ -1,5 +1,6 @@
 import { Component } from 'react';
 import { Feedback } from './feedback/Feedback';
+import { Statistic } from './Statistics/Statistics';
 
 export class App extends Component {
   state = {
@@ -7,21 +8,11 @@ export class App extends Component {
     neutral: 0,
     bad: 0,
   };
-
-  changeGood = newState =>
-    this.setState({
-      good: newState,
-    });
-
-  changeNeutral = newState =>
-    this.setState({
-      neutral: newState,
-    });
-
-  changeBad = newState =>
-    this.setState({
-      bad: newState,
-    });
+  leaveFeedback = newState => {
+    this.setState(prevState => ({
+      [newState]: prevState[newState] + 1,
+    }));
+  };
 
   countTotalFeedback = total =>
     (total = this.state.good + this.state.neutral + this.state.bad);
@@ -40,14 +31,12 @@ export class App extends Component {
 
     return (
       <div>
-        <Feedback
+        <Feedback leaveFeedback={this.leaveFeedback}></Feedback>
+        <Statistic
           state={state}
-          onChangeGood={this.changeGood}
-          onChangeNeutral={this.changeNeutral}
-          onChangeBad={this.changeBad}
           countTotalFeedback={this.countTotalFeedback}
           countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
-        ></Feedback>
+        ></Statistic>
       </div>
     );
   }
