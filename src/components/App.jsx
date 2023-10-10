@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { Feedback } from './feedback/Feedback';
 import { Statistic } from './Statistics/Statistics';
+import { Section } from 'Section/Section';
 
 export class App extends Component {
   state = {
@@ -31,12 +32,18 @@ export class App extends Component {
 
     return (
       <div>
-        <Feedback leaveFeedback={this.leaveFeedback}></Feedback>
-        <Statistic
-          state={state}
-          countTotalFeedback={this.countTotalFeedback}
-          countPositiveFeedbackPercentage={this.countPositiveFeedbackPercentage}
-        ></Statistic>
+        <Section title={'Please leave feedback'}>
+          <Feedback leaveFeedback={this.leaveFeedback}></Feedback>
+        </Section>
+        <Section title={'Statistic'}>
+          <Statistic
+            state={state}
+            countTotalFeedback={this.countTotalFeedback}
+            countPositiveFeedbackPercentage={
+              this.countPositiveFeedbackPercentage
+            }
+          ></Statistic>
+        </Section>
       </div>
     );
   }
